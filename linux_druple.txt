@@ -1,0 +1,14 @@
+#docker network create mynet --driver bridge
+
+
+#docker container run -dit --name drupal_db -e MYSQL_ROOT_PASSWORD=redhat -e MYSQL_USER=yash -e MYSQL_PASSWORD=docker -e MYSQL_DATABASE=drupaldb -v mysql_db:/var/lib/mysql --network mynet mysql:5.7
+
+
+
+
+#
+
+docker container run -it --name mydrupal -e MYSQL_DATABASE=drupaldb -e MYSQL_USER=yash -e MYSQL_PASSWORD=docker -e MYSQL_ROOT_PASSWORD=redhat -v d_modules:/var/www/html/modules -v d_profiles:/var/www/html/profiles -v d_sites:/var/www/html/sites -v d_themes:/var/www/html/themes -p 1234:80 --network mynet drupal_db drupal:latest 
+
+
+#./ngrok http 1234
